@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 
 import { Config } from './config';
@@ -16,10 +16,9 @@ import { PageRequest } from './pageRequest';
   templateUrl: 'table.component.html',
   styleUrls: ['table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class MyTableComponent {
-
   @Input()
   public config: Config;
 
@@ -35,29 +34,36 @@ export class MyTableComponent {
   @Output()
   public selection: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  public checkBoxSelected = new EventEmitter();
+
+  selecedItems: string = '';
+
   public changePage(pageNum: number) {
-    const num = (pageNum < 0) ? 0 :
-      (pageNum >= this.data.lastPage) ? (this.data.lastPage - 1) : pageNum;
+    const num =
+      pageNum < 0
+        ? 0
+        : pageNum >= this.data.lastPage
+        ? this.data.lastPage - 1
+        : pageNum;
 
     this.pageNumber = num;
 
     this.newPage.emit({
       page: num,
-      size: Number(this.size)
+      size: Number(this.size),
     });
   }
 
-  public onSelect (index: number) {
-    this.selection.emit(index + (this.pageNumber * this.size));
+  public onSelect(index: number) {
+    this.selection.emit(index + this.pageNumber * this.size);
   }
 
-  private changeStatus()
-  {
-    this.hierarchicalData.forEach(obj => {
-      obj.forEach(childObj=> {
-        value.checked = parentChecked;
-     });
+  private changeStatus() {
+    this.selecedItems = '';
 
+    
+
+    this.checkBoxSelected.emit(this.data.data);
   }
-
 }

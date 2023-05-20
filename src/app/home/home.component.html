@@ -1,6 +1,9 @@
 <my-table
-[config]="config$ | async"
-[data]="data$ | async"
-(newPage)="updateTable($event)"
-(selection)="goDetails($event)"
+  [config]="config$ | async"
+  [data]="data$ | async"
+  (newPage)="updateTable($event)"
+  (selection)="goDetails($event)"
+  (checkBoxSelected)="checkboxSelected($event)"
 ></my-table>
+
+<p>{{selecedItems}}</p>

@@ -20,6 +20,8 @@ export class HomeComponent {
   public config$: Observable<Config>;
   public data$: Observable<DataTable<Person>>;
 
+  selecedItems: string = '';
+
   constructor(
     private _apiService: ApiService,
     private _router: Router
@@ -53,4 +55,19 @@ export class HomeComponent {
   public goDetails(index: number) {
     this._router.navigateByUrl(`details/${index}`);
   }
+
+  public checkboxSelected(list:any)
+  {
+
+    this.selecedItems = '';
+
+    for (var product of list) {
+
+      this.selecedItems +=
+        product.id + '->' + product.selectedRec.toString() + ' -';
+        
+    }
+
+  }
+
 }
