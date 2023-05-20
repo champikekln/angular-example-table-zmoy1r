@@ -50,4 +50,14 @@ export class MyTableComponent {
   public onSelect (index: number) {
     this.selection.emit(index + (this.pageNumber * this.size));
   }
+
+  private changeStatus()
+  {
+    this.hierarchicalData.forEach(obj => {
+      obj.forEach(childObj=> {
+        value.checked = parentChecked;
+     });
+
+  }
+
 }

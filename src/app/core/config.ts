@@ -1,4 +1,8 @@
-export const configColumns = [{
+export const configColumns = [
+  {
+    header: "",
+    value: ""
+  },{
   header: "Name",
   value: "name"
 }, {
